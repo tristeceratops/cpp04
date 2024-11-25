@@ -1,5 +1,6 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
+#include "WrongCat.hpp"
 #include <iostream>
 
 void testAnimal() {
@@ -64,10 +65,28 @@ void testPolymorphism() {
     std::cout << "\033[31mPolymorphism tests completed.\033[0m" << std::endl << std::endl;
 }
 
+void testWrong() {
+	std::cout << "\033[31mTesting WrongCat class:\033[0m" << std::endl;
+    WrongCat g;
+    WrongCat h(g);
+    WrongCat i;
+    i = g;
+    std::cout << g.getType() << " is type" << std::endl;
+    g.makeSound();
+    h.makeSound();
+    i.makeSound();
+	const WrongAnimal *cat = new WrongCat();
+    std::cout << cat->getType() << " is type" << std::endl;
+    cat->makeSound();
+	delete cat;
+	std::cout << "\033[31mWrongCat tests completed.\033[0m" << std::endl << std::endl;
+}
+
 int main() {
     testAnimal();
     testDog();
     testCat();
     testPolymorphism();
-    return 0;
+    testWrong();
+	return 0;
 }
