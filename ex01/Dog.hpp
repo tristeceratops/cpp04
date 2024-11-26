@@ -13,6 +13,7 @@ class Dog : public Animal{
 		Dog &operator=(const Dog &rhs);
 
 		void makeSound() const;
+		Brain *getBrain();
 	private:
 		Brain *brain;
 };

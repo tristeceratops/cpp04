@@ -24,3 +24,18 @@ Brain& Brain::operator=(const Brain &rhs)
 	}
 	return *this;
 }
+
+void Brain::setIdea(int i, std::string str)
+{
+	if (i >= 0 && i < 100){
+		this->ideas[i] = str;
+	}
+}
+
+std::string Brain::getIdea(int i)
+{
+	if (i >= 0 && i < 100){
+		return this->ideas[i];
+	}
+	return "";
+}

@@ -1,36 +1,52 @@
-#include "Cat.hpp"
+#include "Animal.hpp"
 #include "Dog.hpp"
-#include <iostream>
-
 #include "Cat.hpp"
-#include "Dog.hpp"
-#include <iostream>
+#include "WrongCat.hpp"
+#include "WrongAnimal.hpp"
 
 int main() {
-    const int size = 10;
-    Animal* animals[size];
-    Animal* copiedAnimals[size];
-    // Fill half with Dog objects
-    std::cout << "\033[31mdog\033[0m" << std::endl << std::endl;
-    for (int i = 0; i < size / 2; i++) {
-        animals[i] = new Dog();
-    }
-    // Fill the other half with Cat objects
-    std::cout << "\033[31mcat\033[0m" << std::endl << std::endl;
-    for (int i = size / 2; i < size; i++) {
-        animals[i] = new Cat();
-    }
-    std::cout << "\033[31mcopy\033[0m" << std::endl << std::endl;
-	for (int i = 0; i < size; i++){
-		copiedAnimals[i] = animals[i];
+	const int size = 6;
+	Animal * animals[size];
+
+	for (int i = 0; i < size; i++) {
+		if (i < size / 2)
+			animals[i] = new Dog();
+		else
+			animals[i] = new Cat();
 	}
-	delete animals[0];
-	animals[0] = new Dog();
-    //Delete all animals
-    std::cout << "\033[31mdelete\033[0m" << std::endl << std::endl;
-    for (int i = 0; i < size; i++) {
-        delete animals[i];
-		delete copiedAnimals[i];
-    }
-    return 0;
+
+	for (int i = 0; i < size; i++) {
+		std::cout << animals[i]->getType() << " makes a sound: ";
+		animals[i]->makeSound();
+	}
+
+	for (int i = 0; i < size; i++) {
+		delete animals[i];
+	}
+
+	Dog originalDog;
+	originalDog.getBrain()->setIdea(0, "Chase the ball");
+	Cat originalCat;
+	originalCat.getBrain()->setIdea(0, "Climb the tree");
+
+	Dog copyDog(originalDog);
+	Cat copyCat(originalCat);
+
+
+	std::cout << "Original Dog Idea: " << originalDog.getBrain()->getIdea(0) << std::endl;
+	std::cout << "    Copy Dog Idea: " << copyDog.getBrain()->getIdea(0) << std::endl << std::endl;
+
+	std::cout << "Original Cat Idea: " << originalCat.getBrain()->getIdea(0) << std::endl;
+	std::cout << "    Copy Cat Idea: " << copyCat.getBrain()->getIdea(0) << std::endl;
+
+	originalDog.getBrain()->setIdea(0, "Sleep all day");
+	copyCat.getBrain()->setIdea(0, "Chase mice");
+
+	std::cout << "After changing copyDog, Original Dog Idea: " << originalDog.getBrain()->getIdea(0) << std::endl;
+	std::cout << "After changing copyDog,  CopyDog Dog Idea: " << copyDog.getBrain()->getIdea(0) << std::endl << std::endl;
+	std::cout << "After changing copyCat, Original Cat Idea: " << originalCat.getBrain()->getIdea(0) << std::endl;
+	std::cout << "After changing copyCat,  CopyCat Cat Idea: " << copyCat.getBrain()->getIdea(0) << std::endl;
+
+
+	return 0;
 }
