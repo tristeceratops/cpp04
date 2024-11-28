@@ -5,8 +5,9 @@
 #include "WrongAnimal.hpp"
 
 int main() {
-	const int size = 6;
-	Animal * animals[size];
+	const int size = 10;
+	Animal *animals[size];
+	Animal *copieAnimal[size];
 
 	for (int i = 0; i < size; i++) {
 		if (i < size / 2)
@@ -21,32 +22,25 @@ int main() {
 	}
 
 	for (int i = 0; i < size; i++) {
-		delete animals[i];
+		copieAnimal[i] = animals[i]->clone();
 	}
+	Dog dog = *(Dog *)copieAnimal[0];
+	dog.getBrain()->setIdea(0, "I am a dog");
+	{
+		Dog tmp;
+		tmp = dog;
+		std::cout << "Tmp Dog idea: " << tmp.getBrain()->getIdea(0) << std::endl;
+		tmp.getBrain()->setIdea(0, "I am a good dog");
+		std::cout << "Tmp Dog idea: " << tmp.getBrain()->getIdea(0) << std::endl;
+	}
+	std::cout << "Dog idea: " << dog.getBrain()->getIdea(0) << std::endl;
 
-	Dog originalDog;
-	originalDog.getBrain()->setIdea(0, "Chase the ball");
-	Cat originalCat;
-	originalCat.getBrain()->setIdea(0, "Climb the tree");
+	copieAnimal[0]->makeSound();
 
-	Dog copyDog(originalDog);
-	Cat copyCat(originalCat);
-
-
-	std::cout << "Original Dog Idea: " << originalDog.getBrain()->getIdea(0) << std::endl;
-	std::cout << "    Copy Dog Idea: " << copyDog.getBrain()->getIdea(0) << std::endl << std::endl;
-
-	std::cout << "Original Cat Idea: " << originalCat.getBrain()->getIdea(0) << std::endl;
-	std::cout << "    Copy Cat Idea: " << copyCat.getBrain()->getIdea(0) << std::endl;
-
-	originalDog.getBrain()->setIdea(0, "Sleep all day");
-	copyCat.getBrain()->setIdea(0, "Chase mice");
-
-	std::cout << "After changing copyDog, Original Dog Idea: " << originalDog.getBrain()->getIdea(0) << std::endl;
-	std::cout << "After changing copyDog,  CopyDog Dog Idea: " << copyDog.getBrain()->getIdea(0) << std::endl << std::endl;
-	std::cout << "After changing copyCat, Original Cat Idea: " << originalCat.getBrain()->getIdea(0) << std::endl;
-	std::cout << "After changing copyCat,  CopyCat Cat Idea: " << copyCat.getBrain()->getIdea(0) << std::endl;
-
+	for (int i = 0; i < size; i++) {
+		delete animals[i];
+		delete copieAnimal[i];
+	}
 
 	return 0;
 }

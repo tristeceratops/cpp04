@@ -23,6 +23,7 @@ Cat& Cat::operator=(const Cat &rhs)
 {
 	std::cout << "Cat copy operator" << std::endl;
 	if (this != &rhs){
+		delete this->brain;
 		this->brain = new Brain();
 		*(this->brain) = *(rhs.brain);
 		this->type = rhs.type;
@@ -38,4 +39,9 @@ void Cat::makeSound() const
 Brain* Cat::getBrain()
 {
 	return this->brain;
+}
+
+Animal* Cat::clone() const
+{
+	return new Cat(*this);
 }

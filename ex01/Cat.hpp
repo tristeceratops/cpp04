@@ -14,6 +14,7 @@ class Cat : public Animal{
 
 		void makeSound() const;
 		Brain *getBrain();
+		Animal *clone() const;
 	private:
 		Brain *brain;
 };
