@@ -16,6 +16,7 @@ Cure::~Cure(){
 
 Cure & Cure::operator=(const Cure &rhs){
 	std::cout << "Cure copy operator" << std::endl;
+	this->_type = rhs._type;
 	return *this;
 }
 
@@ -24,5 +25,5 @@ Cure* Cure::clone() const{
 }
 
 void Cure::use(ICharacter &target){
-
+	std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
 }

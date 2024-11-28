@@ -16,6 +16,7 @@ Ice::~Ice(){
 
 Ice & Ice::operator=(const Ice &rhs){
 	std::cout << "Ice copy operator" << std::endl;
+	this->_type = rhs._type;
 	return *this;
 }
 
@@ -24,5 +25,5 @@ Ice* Ice::clone() const{
 }
 
 void Ice::use(ICharacter &target){
-
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }

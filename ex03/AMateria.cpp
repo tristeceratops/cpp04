@@ -29,6 +29,7 @@ std::string const & AMateria::getType() const {
 	return this->_type;
 }
 
-void AMateria::use(Icharacter &target){
-
+void AMateria::use(ICharacter &target){
+	(void) target;
+	std::cout << "materia use" << std::endl;
 }

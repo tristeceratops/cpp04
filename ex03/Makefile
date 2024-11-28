@@ -1,6 +1,6 @@
 NAME := Interface
 FLAGS := -Wall -Wextra -Werror -std=c++98 -g
-FILES := main.cpp Dog.cpp Cat.cpp Animal.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp AAnimal.cpp
+FILES := main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
 OBJ := $(FILES:.cpp=.o)
 
 all: $(NAME)

@@ -1,7 +1,9 @@
 #pragma once
 
 #include <iostream>
-#include <ICharacter.hpp>
+#include "ICharacter.hpp"
+
+class ICharacter;
 
 class AMateria
 {
