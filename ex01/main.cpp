@@ -7,7 +7,6 @@
 int main() {
 	const int size = 10;
 	Animal *animals[size];
-	Animal *copieAnimal[size];
 
 	for (int i = 0; i < size; i++) {
 		if (i < size / 2)
@@ -21,10 +20,7 @@ int main() {
 		animals[i]->makeSound();
 	}
 
-	for (int i = 0; i < size; i++) {
-		copieAnimal[i] = animals[i]->clone();
-	}
-	Dog dog = *(Dog *)copieAnimal[0];
+	Dog dog = *(Dog *)animals[0];
 	dog.getBrain()->setIdea(0, "I am a dog");
 	{
 		Dog tmp;
@@ -35,11 +31,9 @@ int main() {
 	}
 	std::cout << "Dog idea: " << dog.getBrain()->getIdea(0) << std::endl;
 
-	copieAnimal[0]->makeSound();
 
 	for (int i = 0; i < size; i++) {
 		delete animals[i];
-		delete copieAnimal[i];
 	}
 
 	return 0;

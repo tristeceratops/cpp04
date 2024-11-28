@@ -40,8 +40,3 @@ Brain* Cat::getBrain()
 {
 	return this->brain;
 }
-
-Animal* Cat::clone() const
-{
-	return new Cat(*this);
-}

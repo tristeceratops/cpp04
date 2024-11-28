@@ -16,5 +16,4 @@ class Animal {
 		virtual void makeSound() const;
 		std::string getType() const;
 		void setType(std::string str);
-		virtual Animal *clone() const = 0;
 };

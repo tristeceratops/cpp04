@@ -40,8 +40,3 @@ Brain* Dog::getBrain()
 {
 	return this->brain;
 }
-
-Animal* Dog::clone() const
-{
-	return new Dog(*this);
-}
