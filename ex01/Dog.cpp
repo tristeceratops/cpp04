@@ -10,7 +10,7 @@ Dog::Dog()
 Dog::Dog(const Dog &copy)
 {
 	std::cout << "Dog copy constructor" << std::endl;
-	*this = copy;
+	this->brain = new Brain(*copy.brain);
 }
 
 Dog::~Dog()

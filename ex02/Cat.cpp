@@ -10,7 +10,7 @@ Cat::Cat()
 Cat::Cat(const Cat &copy)
 {
 	std::cout << "Cat copy constructor" << std::endl;
-	*this = copy;
+	this->brain = new Brain(*copy.brain);
 }
 
 Cat::~Cat()
