@@ -10,8 +10,8 @@ AMateria::AMateria(const AMateria &copy){
 	std::cout << "materia empty constructor" << std::endl;
 }
 
-AMateria::AMateria(std::string const &type){
-	(void) type;
+AMateria::AMateria(std::string const &type): _type(type)
+{
 	std::cout << "materia constructor with type" << std::endl;
 }
 

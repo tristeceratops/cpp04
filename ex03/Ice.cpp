@@ -1,13 +1,15 @@
 #include "Ice.hpp"
 
-Ice::Ice(){
+Ice::Ice() : AMateria("ice")
+{
 	std::cout << "Ice empty constructor" << std::endl;
-	this->_type = "ice";
 }
 
-Ice::Ice(const Ice &copy){
+Ice::Ice(const Ice &copy) : AMateria("ice")
+{
 	std::cout << "Ice copy constructor" << std::endl;
-	*this = copy;
+	//*this = copy;
+	(void) copy;
 }
 
 Ice::~Ice(){
@@ -16,7 +18,8 @@ Ice::~Ice(){
 
 Ice & Ice::operator=(const Ice &rhs){
 	std::cout << "Ice copy operator" << std::endl;
-	this->_type = rhs._type;
+	(void) rhs;
+	//this->_type = rhs._type;
 	return *this;
 }
 

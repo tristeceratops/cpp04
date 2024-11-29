@@ -8,7 +8,7 @@ class ICharacter;
 class AMateria
 {
 	protected:
-		std::string const _type;
+		const std::string _type;
 		AMateria();
 		AMateria(const AMateria &copy);
 	public:

@@ -2,6 +2,7 @@
 #include "Cure.hpp"
 #include "Character.hpp"
 #include "MateriaSource.hpp"
+#include <stdio.h>
 
 int main()
 {
@@ -11,6 +12,7 @@ int main()
 	ICharacter* me = new Character("me");
 	AMateria* tmp;
 	tmp = src->createMateria("ice");
+	printf("%p and\n", tmp);
 	me->equip(tmp);
 	tmp = src->createMateria("cure");
 	me->equip(tmp);

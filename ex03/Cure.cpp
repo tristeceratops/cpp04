@@ -1,13 +1,14 @@
 #include "Cure.hpp"
 
-Cure::Cure(){
+Cure::Cure() : AMateria("cure")
+{
 	std::cout << "Cure empty constructor" << std::endl;
-	this->_type = "cure";
 }
 
-Cure::Cure(const Cure &copy){
+Cure::Cure(const Cure &copy) : AMateria("cure")
+{
 	std::cout << "Cure copy constructor" << std::endl;
-	*this = copy;
+	(void) copy;
 }
 
 Cure::~Cure(){
@@ -16,7 +17,8 @@ Cure::~Cure(){
 
 Cure & Cure::operator=(const Cure &rhs){
 	std::cout << "Cure copy operator" << std::endl;
-	this->_type = rhs._type;
+	(void) rhs;
+	//this->_type = rhs._type;
 	return *this;
 }
 
