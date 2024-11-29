@@ -1,46 +1,73 @@
 #include "MateriaSource.hpp"
 
-MateriaSource::MateriaSource() {
+MateriaSource::MateriaSource() : materiaCount(0) {
 	std::cout << "MateriaSource default constructor" << std::endl;
 	for (int i = 0; i < 4; i++) {
 		this->materias[i] = NULL;
 	}
+	for (int i = 0; i < 100; i++) {
+		this->allMaterias[i] = NULL;
+	}
 }
 
-MateriaSource::MateriaSource(const MateriaSource &other) {
+MateriaSource::MateriaSource(const MateriaSource &other) : materiaCount(other.materiaCount) {
 	std::cout << "MateriaSource copy constructor" << std::endl;
 	for (int i = 0; i < 4; i++) {
 		if (other.materias[i] != NULL){
-			// this->materias[i] = other.materias[i];
 			this->materias[i] = other.materias[i]->clone();
 		}
 		else {
 			this->materias[i] = NULL;
 		}
 	}
+	for (int i = 0; i < 100; i++) {
+		if (other.allMaterias[i] != NULL) {
+			this->allMaterias[i] = other.allMaterias[i]->clone();
+		} else {
+			this->allMaterias[i] = NULL;
+		}
+	}
 }
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &other) {
 	std::cout << "MateriaSource assignation operator" << std::endl;
-	for (int i = 0; i < 4; i++) {
-		if (this->materias[i] != NULL) {
-			delete this->materias[i];
+	if (this != &other) {
+		for (int i = 0; i < 4; i++) {
+			if (this->materias[i] != NULL) {
+				delete this->materias[i];
+			}
+			if (other.materias[i] != NULL) {
+				this->materias[i] = other.materias[i]->clone();
+			}
+			else {
+				this->materias[i] = NULL;
+			}
 		}
-		if (other.materias[i] != NULL) {
-			//this->materias[i] = other.materias[i];
-			this->materias[i] = other.materias[i]->clone();
+		for (int i = 0; i < 100; i++) {
+			if (this->allMaterias[i] != NULL) {
+				delete this->allMaterias[i];
+			}
+			if (other.allMaterias[i] != NULL) {
+				this->allMaterias[i] = other.allMaterias[i]->clone();
+			} else {
+				this->allMaterias[i] = NULL;
+			}
 		}
-		else
-			this->materias[i] = NULL;
+		this->materiaCount = other.materiaCount;
 	}
 	return *this;
 }
 
 MateriaSource::~MateriaSource() {
 	std::cout << "MateriaSource destructor" << std::endl;
+	// Clear the materias array to avoid double deletion
 	for (int i = 0; i < 4; i++) {
-		if (this->materias[i] != NULL) {
-			delete this->materias[i];
+		this->materias[i] = NULL;
+	}
+	// Delete all allocated materias
+	for (int i = 0; i < 100; i++) {
+		if (this->allMaterias[i] != NULL) {
+			delete this->allMaterias[i];
 		}
 	}
 }
@@ -50,20 +77,20 @@ void MateriaSource::learnMateria(AMateria *materia) {
 	for (int i = 0; i < 4; i++) {
 		if (this->materias[i] == NULL) {
 			this->materias[i] = materia;
-			std::cout << "learnmateria return create for i =" << i << "and type = " << this->materias[i]->getType() << std::endl;
-			return ;
+			this->allMaterias[materiaCount++] = materia; // Track the allocated materia
+			return;
 		}
 	}
+	// If the materias array is full, still track the allocated materia
+	this->allMaterias[materiaCount++] = materia;
 }
 
 AMateria *MateriaSource::createMateria(std::string const &type) {
 	std::cout << "MateriaSource createMateria" << std::endl;
 	for (int i = 0; i < 4; i++) {
 		if (this->materias[i] != NULL && this->materias[i]->getType() == type) {
-			std::cout << "createMateria return matieria for i =" << i << "and type = " << this->materias[i]->getType() << std::endl;
 			return this->materias[i]->clone();
 		}
 	}
-	std::cout << "createMateria return NULL" << std::endl;
 	return NULL;
 }
