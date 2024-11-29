@@ -25,11 +25,11 @@ Character::Character(std::string const &name): _name(name) {
 
 Character::~Character() {
 	std::cout << "Character destructor" << std::endl;
-	for (int i = 0; i < 4; i++) {
-		if (this->inventory[i] != NULL) {
-			//delete this->inventory[i];
-		}
-	}
+	// for (int i = 0; i < 4; i++) {
+	// 	if (this->inventory[i] != NULL) {
+	// 		delete this->inventory[i];
+	// 	}
+	// }
 }
 
 Character &Character::operator=(Character const &rhs) {

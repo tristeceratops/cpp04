@@ -13,9 +13,9 @@ int main()
 		src->learnMateria(new Cure());
 		ICharacter* me = new Character("me");
 		AMateria* tmp;
-		tmp = src->createMateria("ice"); //leak
+		tmp = src->createMateria("ice");
 		me->equip(tmp);
-		tmp = src->createMateria("cure"); //leak
+		tmp = src->createMateria("cure");
 		me->equip(tmp);
 		ICharacter* bob = new Character("bob");
 		me->use(0, *bob);
@@ -32,9 +32,9 @@ int main()
 		src->learnMateria(new Cure());
 		ICharacter* me = new Character("me");
 		AMateria* tmp;
-		tmp = src->createMateria("ice"); //leak
+		tmp = src->createMateria("ice");
 		me->equip(tmp);
-		tmp = src->createMateria("cure"); //leak
+		tmp = src->createMateria("cure");
 		tmp = src->createMateria("fire");
 		if (tmp != NULL)
 			me->equip(tmp);
@@ -51,9 +51,9 @@ int main()
 		src->learnMateria(new Cure());
 		ICharacter* me = new Character("me");
 		AMateria* tmp;
-		tmp = src->createMateria("ice"); //leak
+		tmp = src->createMateria("ice");
 		me->equip(tmp);
-		tmp = src->createMateria("cure"); //leak
+		tmp = src->createMateria("cure");
 		me->equip(tmp);
 		me->equip(tmp);
 		me->equip(tmp);
@@ -73,9 +73,9 @@ int main()
 		src->learnMateria(new Cure());
 		ICharacter* me = new Character("me");
 		AMateria* tmp;
-		tmp = src->createMateria("ice"); //leak
+		tmp = src->createMateria("ice");
 		me->equip(tmp);
-		tmp = src->createMateria("cure"); //leak
+		tmp = src->createMateria("cure");
 		me->equip(tmp);
 		ICharacter* bob = new Character("bob");
 		me->use(0, *bob);
@@ -90,14 +90,19 @@ int main()
 	{
 		IMateriaSource* src = new MateriaSource();
 		src->learnMateria(new Ice());
+		src->learnMateria(new Ice());
+		src->learnMateria(new Ice());
+		src->learnMateria(new Ice());
+		src->learnMateria(new Ice());
+		src->learnMateria(new Ice());
 		src->learnMateria(new Cure());
 		ICharacter* me = new Character("me");
 		AMateria* tmp;
 		me->unequip(1);
-		tmp = src->createMateria("ice"); //leak
+		tmp = src->createMateria("ice");
 		me->equip(tmp);
-		tmp = src->createMateria("cure"); //leak
-		me->equip(tmp); //leak
+		tmp = src->createMateria("cure");
+		me->equip(tmp);
 		ICharacter* bob = new Character("bob");
 		me->use(0, *bob);
 		me->use(1, *bob);
