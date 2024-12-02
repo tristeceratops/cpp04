@@ -74,6 +74,10 @@ MateriaSource::~MateriaSource() {
 
 void MateriaSource::learnMateria(AMateria *materia) {
 	std::cout << "MateriaSource learnMateria" << std::endl;
+	if (materiaCount == 100) {
+		std::cout << "MateriaSource learnMateria: Cannot learn more than 100 materias" << std::endl;
+		return;
+	}
 	for (int i = 0; i < 4; i++) {
 		if (this->materias[i] == NULL) {
 			this->materias[i] = materia;
@@ -88,9 +92,13 @@ void MateriaSource::learnMateria(AMateria *materia) {
 AMateria *MateriaSource::createMateria(std::string const &type) {
 	std::cout << "MateriaSource createMateria" << std::endl;
 	for (int i = 0; i < 4; i++) {
+		if (this->materias[i] == NULL) {
+			continue;
+		}
 		if (this->materias[i] != NULL && this->materias[i]->getType() == type) {
 			this->allMaterias[materiaCount] = this->materias[i]->clone();
 			return this->allMaterias[materiaCount++];
+			//return this->materias[i]->clone();
 		}
 	}
 	return NULL;

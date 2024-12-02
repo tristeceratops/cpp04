@@ -7,7 +7,9 @@
 class Character : public ICharacter {
     private:
         AMateria* inventory[4];
+        AMateria* memory[100];
         std::string _name;
+		int index;
     public:
         Character();
         Character(Character const &copy);

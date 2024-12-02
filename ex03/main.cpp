@@ -15,7 +15,7 @@ int main()
 		AMateria* tmp;
 		tmp = src->createMateria("ice");
 		me->equip(tmp);
-		tmp = src->createMateria("cure");
+		tmp = src->createMateria("cure"); //leak
 		me->equip(tmp);
 		ICharacter* bob = new Character("bob");
 		me->use(0, *bob);
@@ -34,7 +34,7 @@ int main()
 		AMateria* tmp;
 		tmp = src->createMateria("ice");
 		me->equip(tmp);
-		tmp = src->createMateria("cure");
+		tmp = src->createMateria("cure"); //leak
 		tmp = src->createMateria("fire");
 		if (tmp != NULL)
 			me->equip(tmp);
@@ -53,7 +53,7 @@ int main()
 		AMateria* tmp;
 		tmp = src->createMateria("ice");
 		me->equip(tmp);
-		tmp = src->createMateria("cure");
+		tmp = src->createMateria("cure"); //leak
 		me->equip(tmp);
 		me->equip(tmp);
 		me->equip(tmp);
@@ -75,7 +75,7 @@ int main()
 		AMateria* tmp;
 		tmp = src->createMateria("ice");
 		me->equip(tmp);
-		tmp = src->createMateria("cure");
+		tmp = src->createMateria("cure"); //leak
 		me->equip(tmp);
 		ICharacter* bob = new Character("bob");
 		me->use(0, *bob);
@@ -102,6 +102,8 @@ int main()
 		tmp = src->createMateria("ice");
 		me->equip(tmp);
 		tmp = src->createMateria("cure");
+		if (tmp == NULL)
+			std::cout << "Returned NULL because it does not exists." << std::endl;
 		me->equip(tmp);
 		ICharacter* bob = new Character("bob");
 		me->use(0, *bob);
