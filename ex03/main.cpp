@@ -15,7 +15,7 @@ int main()
 		AMateria* tmp;
 		tmp = src->createMateria("ice");
 		me->equip(tmp);
-		tmp = src->createMateria("cure"); //leak
+		tmp = src->createMateria("cure");
 		me->equip(tmp);
 		ICharacter* bob = new Character("bob");
 		me->use(0, *bob);
@@ -34,12 +34,13 @@ int main()
 		AMateria* tmp;
 		tmp = src->createMateria("ice");
 		me->equip(tmp);
-		tmp = src->createMateria("cure"); //leak
+		tmp = src->createMateria("cure");
 		tmp = src->createMateria("fire");
 		if (tmp != NULL)
 			me->equip(tmp);
 		else
 			std::cout << "Returned NULL because it does not exists." << std::endl;
+		tmp = src->createMateria("fire");
 		delete me;
 		delete src;
 	}
@@ -49,17 +50,20 @@ int main()
 		IMateriaSource* src = new MateriaSource();
 		src->learnMateria(new Ice());
 		src->learnMateria(new Cure());
+		for (int i = 0; i < 500; i++)
+			src->learnMateria(new Cure());
 		ICharacter* me = new Character("me");
 		AMateria* tmp;
 		tmp = src->createMateria("ice");
 		me->equip(tmp);
-		tmp = src->createMateria("cure"); //leak
+		tmp = src->createMateria("cure");
 		me->equip(tmp);
 		me->equip(tmp);
 		me->equip(tmp);
 		me->equip(tmp);
-		me->equip(tmp);
-		ICharacter* bob = new Character("bob");
+		for (int i = 0; i < 500; i++)
+			me->equip(tmp);
+		ICharacter* bob = new Character("Bobby");
 		me->use(0, *bob);
 		me->use(1, *bob);
 		delete bob;
@@ -75,7 +79,7 @@ int main()
 		AMateria* tmp;
 		tmp = src->createMateria("ice");
 		me->equip(tmp);
-		tmp = src->createMateria("cure"); //leak
+		tmp = src->createMateria("cure");
 		me->equip(tmp);
 		ICharacter* bob = new Character("bob");
 		me->use(0, *bob);
@@ -102,8 +106,6 @@ int main()
 		tmp = src->createMateria("ice");
 		me->equip(tmp);
 		tmp = src->createMateria("cure");
-		if (tmp == NULL)
-			std::cout << "Returned NULL because it does not exists." << std::endl;
 		me->equip(tmp);
 		ICharacter* bob = new Character("bob");
 		me->use(0, *bob);

@@ -2,24 +2,23 @@
 
 Ice::Ice() : AMateria("ice")
 {
-	std::cout << "Ice empty constructor" << std::endl;
+	// std::cout << "Ice empty constructor" << std::endl;
 }
 
 Ice::Ice(const Ice &copy) : AMateria("ice")
 {
-	std::cout << "Ice copy constructor" << std::endl;
+	// std::cout << "Ice copy constructor" << std::endl;
 	//*this = copy;
 	(void) copy;
 }
 
 Ice::~Ice(){
-	std::cout << "Ice destructor" << std::endl;
+	// std::cout << "Ice destructor" << std::endl;
 }
 
 Ice & Ice::operator=(const Ice &rhs){
-	std::cout << "Ice copy operator" << std::endl;
+	// std::cout << "Ice copy operator" << std::endl;
 	(void) rhs;
-	//this->_type = rhs._type;
 	return *this;
 }
 

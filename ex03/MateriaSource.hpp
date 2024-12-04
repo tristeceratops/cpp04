@@ -6,9 +6,19 @@
 
 class MateriaSource : public IMateriaSource {
     private:
+        struct Node {
+            AMateria* materia;
+            Node* next;
+            Node(AMateria* m) : materia(m), next(NULL) {}
+        };
+
         AMateria *materias[4];
-        AMateria *allMaterias[100];
+        Node* head; // Head of the linked list
         int materiaCount;
+
+        void clearList();
+        void copyList(const MateriaSource &other);
+
     public:
         MateriaSource();
         MateriaSource(const MateriaSource &other);

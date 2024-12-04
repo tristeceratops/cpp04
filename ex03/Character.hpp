@@ -6,10 +6,20 @@
 
 class Character : public ICharacter {
     private:
+        struct Node {
+            AMateria* materia;
+            Node* next;
+            Node(AMateria* m) : materia(m), next(NULL) {}
+        };
+
+        Node* head; // Head of the linked list
+
         AMateria* inventory[4];
-        AMateria* memory[100];
         std::string _name;
-		int index;
+        int inv_index;
+
+        void clearList();
+        void copyList(const Character &other);
     public:
         Character();
         Character(Character const &copy);

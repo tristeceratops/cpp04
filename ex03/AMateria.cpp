@@ -2,26 +2,26 @@
 
 AMateria::AMateria(): _type("")
 {
-	std::cout << "materia empty constructor" << std::endl;
+	// std::cout << "materia empty constructor" << std::endl;
 }
 
 AMateria::AMateria(const AMateria &copy){
 	*this = copy;
-	std::cout << "materia empty constructor" << std::endl;
+	// std::cout << "materia empty constructor" << std::endl;
 }
 
 AMateria::AMateria(std::string const &type): _type(type)
 {
-	std::cout << "materia constructor with type" << std::endl;
+	// std::cout << "materia constructor with type" << std::endl;
 }
 
 AMateria::~AMateria(){
-	std::cout << "materia destructor" << std::endl;
+	// std::cout << "materia destructor" << std::endl;
 }
 
 AMateria& AMateria::operator=(const AMateria &rhs){
 	(void) rhs;
-	std::cout << "materia copy operator" << std::endl;
+	// std::cout << "materia copy operator" << std::endl;
 	return *this;
 }
 
