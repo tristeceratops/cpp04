@@ -50,7 +50,7 @@ int main()
 		IMateriaSource* src = new MateriaSource();
 		src->learnMateria(new Ice());
 		src->learnMateria(new Cure());
-		for (int i = 0; i < 500; i++)
+		for (int i = 0; i < 42; i++)
 			src->learnMateria(new Cure());
 		ICharacter* me = new Character("me");
 		AMateria* tmp;
@@ -61,7 +61,7 @@ int main()
 		me->equip(tmp);
 		me->equip(tmp);
 		me->equip(tmp);
-		for (int i = 0; i < 500; i++)
+		for (int i = 0; i < 42; i++)
 			me->equip(tmp);
 		ICharacter* bob = new Character("Bobby");
 		me->use(0, *bob);

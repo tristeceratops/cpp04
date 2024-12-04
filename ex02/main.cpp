@@ -56,7 +56,7 @@ int main() {
 	for (int i = 0; i < size; i++) {
 		delete animals[i];
 	}
+	std::cout << RESET << std::endl;
 	return 0;
 
-	std::cout << RESET << std::endl;
 }
